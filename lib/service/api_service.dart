@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert' show json;
 
+import 'package:dashboardx/data/model/serializer.dart';
+import 'package:dashboardx/data/model/server/info.dart';
 import 'package:dashboardx/utils/log.dart';
 import 'package:http/http.dart' as http;
 
 const _tag = "api_service";
-const _baseUrl = "gohere.terra-incognita.tk";
+const _baseUrl = "4a99d15c.ngrok.io";
 
 class HttpCode {
   static const OK = 200;
@@ -16,17 +18,14 @@ class ApiService {
   static const _timeoutDuration = Duration(seconds: 30);
   final _client = http.Client();
 
-//  Future<BuiltList<Category>> getContent() async {
-//    final params = {
-//      'locale': await languageCodeStream.first,
-//    };
-//    final jsonResponse = await _get('content', params: params);
-//    if (jsonResponse == null) {
-//      Log.e(_tag, "Response is null");
-//      return BuiltList();
-//    }
-//    return deserializeListOf<Category>(jsonResponse);
-//  }
+  Future<Info> getInfo() async {
+    final jsonResponse = await _get('info');
+    if (jsonResponse == null) {
+      Log.e(_tag, "Response is null");
+      return null;
+    }
+    return deserialize<Info>(jsonResponse);
+  }
 
   Future<dynamic> _get(String path, {Map<String, String> params}) async {
     final uri = _buildUri("$path", params: params);

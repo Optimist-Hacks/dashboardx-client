@@ -7,10 +7,17 @@ part of 'main_state.dart';
 // **************************************************************************
 
 class _$MainState extends MainState {
+  @override
+  final Info info;
+
   factory _$MainState([void Function(MainStateBuilder) updates]) =>
       (new MainStateBuilder()..update(updates)).build();
 
-  _$MainState._() : super._();
+  _$MainState._({this.info}) : super._() {
+    if (info == null) {
+      throw new BuiltValueNullFieldError('MainState', 'info');
+    }
+  }
 
   @override
   MainState rebuild(void Function(MainStateBuilder) updates) =>
@@ -22,24 +29,37 @@ class _$MainState extends MainState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MainState;
+    return other is MainState && info == other.info;
   }
 
   @override
   int get hashCode {
-    return 54649461;
+    return $jf($jc(0, info.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('MainState').toString();
+    return (newBuiltValueToStringHelper('MainState')..add('info', info))
+        .toString();
   }
 }
 
 class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   _$MainState _$v;
 
+  InfoBuilder _info;
+  InfoBuilder get info => _$this._info ??= new InfoBuilder();
+  set info(InfoBuilder info) => _$this._info = info;
+
   MainStateBuilder();
+
+  MainStateBuilder get _$this {
+    if (_$v != null) {
+      _info = _$v.info?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(MainState other) {
@@ -56,7 +76,20 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
 
   @override
   _$MainState build() {
-    final _$result = _$v ?? new _$MainState._();
+    _$MainState _$result;
+    try {
+      _$result = _$v ?? new _$MainState._(info: info.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'info';
+        info.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MainState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
