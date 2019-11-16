@@ -22,6 +22,22 @@ abstract class Emotion implements Built<Emotion, EmotionBuilder> {
 
   double get surprise;
 
+  double angryTotal() {
+    return (anger + fear + disgust + contempt) * 100;
+  }
+
+  double sadTotal() {
+    return sadness * 100;
+  }
+
+  double calmTotal() {
+    return neutral * 100;
+  }
+
+  double funnyTotal() {
+    return (surprise + happiness) * 100;
+  }
+
   Emotion._();
 
   factory Emotion([void Function(EmotionBuilder) updates]) = _$Emotion;
