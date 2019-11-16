@@ -32,6 +32,7 @@ class App extends StatelessWidget {
             theme: ThemeData(
               canvasColor: Colors.transparent,
               scaffoldBackgroundColor: colors.backgroundColor,
+              fontFamily: 'Averta CY',
             ),
             routes: {
               MainPage.routeName: (context) => MainPage(),

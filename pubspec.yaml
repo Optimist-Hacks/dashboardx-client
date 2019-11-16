@@ -19,6 +19,7 @@ dependencies:
   preferences: ^4.0.0
   noise_meter: ^1.0.1
   permission_handler: ^4.0.0
+  dots_indicator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +31,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
+  assets:
+    - assets/
+  fonts:
+    - family: Averta CY
+      fonts:
+        - asset: fonts/Averta-Cyrillic-Regular.otf
+        - asset: fonts/Averta-Cyrillic-SemiBold.otf
+          weight: 600
+        - asset: fonts/Averta-Cyrillic-Bold.otf
+          weight: 700

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dashboardx/data/model/state/main/main_state.dart';
 import 'package:dashboardx/domain/main_bloc.dart';
 import 'package:dashboardx/service/preferences_service.dart';
+import 'package:dashboardx/ui/card/dashboard_card.dart';
+import 'package:dashboardx/ui/card/emotion_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,26 +60,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _body() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text("co2 ${_state.info.co2Emission}"),
-          Text("electricity ${_state.info.electricity}"),
-          Text("electricity ${_state.info.heating}"),
-          Text("water ${_state.info.water}"),
-          Text("noise ${_state.noise}db"),
-          Text("anger ${_state.info.emotion.anger}"),
-          Text("contempt ${_state.info.emotion.contempt}"),
-          Text("disgust ${_state.info.emotion.disgust}"),
-          Text("fear ${_state.info.emotion.fear}"),
-          Text("happiness ${_state.info.emotion.happiness}"),
-          Text("neutral ${_state.info.emotion.neutral}"),
-          Text("sadness ${_state.info.emotion.sadness}"),
-          Text("surprise ${_state.info.emotion.surprise}"),
-        ],
-      ),
-    );
+    return EmotionCard(10, 0, _state.info.emotion);
   }
 }
