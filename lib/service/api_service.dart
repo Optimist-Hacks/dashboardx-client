@@ -22,7 +22,7 @@ class ApiService {
 
   Future<Info> getInfo({double noise}) async {
     Map<String, String> params = {
-      'housingId': '$_houseId',
+      'housingId': _houseId,
     };
     if (noise != null) {
       params['noise'] = '$noise';
@@ -45,6 +45,7 @@ class ApiService {
         filename: "file",
       ),
     );
+    request.fields['housingId'] = _houseId;
 
     Log.d(_tag, "-> POST url = $uri");
 
