@@ -1,5 +1,8 @@
+import 'package:dashboardx/domain/main_bloc.dart';
+import 'package:dashboardx/service/preferences_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 const _tag = "main_page";
 
@@ -11,13 +14,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  MainBloc _mainBloc;
+  PreferencesService _preferencesService;
 
   @override
   void didChangeDependencies() {
+    _preferencesService ??= Provider.of<PreferencesService>(context);
+    _mainBloc ??= MainBloc(_preferencesService);
     super.didChangeDependencies();
   }
 
