@@ -21,7 +21,7 @@ class CameraBloc {
   Stream<File> get imageTaken => _imageTakenSubject;
 
   CameraBloc(this._apiService) {
-    _init();
+//    _init();
   }
 
   void dispose() {
@@ -62,8 +62,13 @@ class CameraBloc {
       _imageFile.deleteSync();
     }
 
-    await _controller.takePicture(_imageFile.path);
-
+    try {
+      await _controller.takePicture(_imageFile.path);
+    } catch (e){
+      Log.e(_tag, e);
+      _controller.dispose();
+      await _controller.initialize();
+    }
     Log.d(_tag, "Picure taken");
     _imageTakenSubject.add(_imageFile);
 

@@ -17,20 +17,6 @@ class DashboardCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(top: 30.0),
-          child: Center(
-            child: DotsIndicator(
-              dotsCount: _pageCount,
-              position: _pageNumber.toDouble(),
-              decorator: DotsDecorator(
-                activeColor: Provider.of<DashboardxColors>(context).activeColor,
-                color: Provider.of<DashboardxColors>(context).passiveColor,
-                size: Size.square(5.0),
-              ),
-            ),
-          ),
-        ),
         _body,
         SizedBox(height: 30.0),
       ],
