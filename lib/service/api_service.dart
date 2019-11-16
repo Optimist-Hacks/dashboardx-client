@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert' show json;
+import 'dart:typed_data';
 
 import 'package:dashboardx/data/model/serializer.dart';
 import 'package:dashboardx/data/model/server/info.dart';
@@ -34,6 +35,26 @@ class ApiService {
     return deserialize<Info>(jsonResponse);
   }
 
+  Future<bool> uploadImage(Uint8List data) async {
+    final uri = _buildUri("face");
+    var request = http.MultipartRequest("POST", uri);
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        data,
+        filename: "file",
+      ),
+    );
+
+    Log.d(_tag, "-> POST url = $uri");
+
+    final response = await request.send().timeout(_timeoutDuration);
+
+    Log.d(_tag, "<- POST url = $uri, code = ${response.statusCode}");
+
+    return response.statusCode == HttpCode.OK;
+  }
+
   Future<dynamic> _get(String path, {Map<String, String> params}) async {
     final uri = _buildUri("$path", params: params);
     Log.d(_tag, "-> GET url = $uri, params = $params");
@@ -59,6 +80,42 @@ class ApiService {
     }
 
     return json.decode(response.body);
+  }
+
+  Future<bool> _post(
+    String path, {
+    Map<String, String> params,
+    Map<String, String> headers,
+    body,
+  }) async {
+    final uri = _buildUri(path, params: params);
+    Log.d(_tag, "-> POST url = $uri, params = $params, body = $body");
+
+    final response = await _client
+        .post(uri, headers: headers, body: body)
+        .timeout(_timeoutDuration, onTimeout: _onTimeout)
+        .catchError((error) {
+      Log.e(_tag,
+          "<- POST url = $uri, Error while making POST request, error = $error");
+      return false;
+    });
+
+    if (response == null) {
+      return false;
+    }
+
+    Log.d(_tag, "<- POST url = $uri, code = ${response.statusCode}");
+    Log.d(_tag, "<- POST url = $uri, body = ${response.body}");
+
+    if (response.statusCode != 200) {
+      return false;
+    }
+
+    if (response.body == null || response.body.isEmpty) {
+      return false;
+    }
+
+    return true;
   }
 
   Uri _buildUri(String path, {Map<String, String> params}) {
