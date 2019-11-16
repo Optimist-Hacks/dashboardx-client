@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 const _tag = "api_service";
 const _baseUrl = "4a99d15c.ngrok.io";
+const _houseId = "4a944fb8-7e9b-4041-aed6-cded0c797562";
 
 class HttpCode {
   static const OK = 200;
@@ -19,7 +20,10 @@ class ApiService {
   final _client = http.Client();
 
   Future<Info> getInfo() async {
-    final jsonResponse = await _get('info');
+    Map<String, String> params = {
+      'housingId': '$_houseId',
+    };
+    final jsonResponse = await _get('info', params: params);
     if (jsonResponse == null) {
       Log.e(_tag, "Response is null");
       return null;

@@ -3,9 +3,8 @@ import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dashboardx/ui/page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'service/api_service.dart';
-import 'utils/log.dart';
+import 'package:dashboardx/service/api_service.dart';
+import 'package:dashboardx/utils/log.dart';
 
 const _tag = "app";
 

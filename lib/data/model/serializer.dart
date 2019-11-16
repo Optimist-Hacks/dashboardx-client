@@ -1,12 +1,14 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
+import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/data/model/server/info.dart';
 
 part 'serializer.g.dart';
 
 @SerializersFor(const [
   Info,
+  Contester,
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

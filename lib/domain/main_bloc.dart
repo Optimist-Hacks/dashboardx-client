@@ -1,10 +1,15 @@
+import 'dart:convert';
+
+import 'package:dashboardx/data/model/serializer.dart';
+import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/data/model/server/info.dart';
 import 'package:dashboardx/data/model/state/main/main_state.dart';
 import 'package:dashboardx/service/preferences_service.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:built_collection/built_collection.dart';
 
-import '../service/api_service.dart';
-import '../utils/log.dart';
+import 'package:dashboardx/service/api_service.dart';
+import 'package:dashboardx/utils/log.dart';
 
 const _tag = "main_bloc";
 
@@ -37,8 +42,15 @@ class MainBloc {
         ..co2 = 0
         ..electricity = 0
         ..heating = 0
-        ..water = 0).toBuilder());
+        ..water = 0
+        ..leaderboard = ListBuilder<Contester>()).toBuilder());
     _mainStateBehaviorSubject.add(initMainState);
+
+    final response = _preferencesService.getInfo();
+    if (response != null) {
+      _onNewInfo(deserialize<Info>(json.decode(response)));
+    }
+
     _apiService.getInfo().then((info) => _onNewInfo(info));
   }
 
@@ -47,6 +59,7 @@ class MainBloc {
     if (info == null) {
       Log.e(_tag, "Info ins null!!!");
     }
+    _preferencesService.setInfo(jsonEncode(serialize<Info>(info)));
     _updateMainState((b) => b..info = info.toBuilder());
   }
 }

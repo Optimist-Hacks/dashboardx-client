@@ -29,6 +29,10 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       'water',
       serializers.serialize(object.water,
           specifiedType: const FullType(double)),
+      'leaderboard',
+      serializers.serialize(object.leaderboard,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Contester)])),
     ];
 
     return result;
@@ -61,6 +65,12 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
           result.water = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
+        case 'leaderboard':
+          result.leaderboard.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Contester)]))
+              as BuiltList<dynamic>);
+          break;
       }
     }
 
@@ -77,11 +87,15 @@ class _$Info extends Info {
   final double heating;
   @override
   final double water;
+  @override
+  final BuiltList<Contester> leaderboard;
 
   factory _$Info([void Function(InfoBuilder) updates]) =>
       (new InfoBuilder()..update(updates)).build();
 
-  _$Info._({this.co2, this.electricity, this.heating, this.water}) : super._() {
+  _$Info._(
+      {this.co2, this.electricity, this.heating, this.water, this.leaderboard})
+      : super._() {
     if (co2 == null) {
       throw new BuiltValueNullFieldError('Info', 'co2');
     }
@@ -93,6 +107,9 @@ class _$Info extends Info {
     }
     if (water == null) {
       throw new BuiltValueNullFieldError('Info', 'water');
+    }
+    if (leaderboard == null) {
+      throw new BuiltValueNullFieldError('Info', 'leaderboard');
     }
   }
 
@@ -110,14 +127,18 @@ class _$Info extends Info {
         co2 == other.co2 &&
         electricity == other.electricity &&
         heating == other.heating &&
-        water == other.water;
+        water == other.water &&
+        leaderboard == other.leaderboard;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, co2.hashCode), electricity.hashCode), heating.hashCode),
-        water.hashCode));
+        $jc(
+            $jc($jc($jc(0, co2.hashCode), electricity.hashCode),
+                heating.hashCode),
+            water.hashCode),
+        leaderboard.hashCode));
   }
 
   @override
@@ -126,7 +147,8 @@ class _$Info extends Info {
           ..add('co2', co2)
           ..add('electricity', electricity)
           ..add('heating', heating)
-          ..add('water', water))
+          ..add('water', water)
+          ..add('leaderboard', leaderboard))
         .toString();
   }
 }
@@ -150,6 +172,12 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
   double get water => _$this._water;
   set water(double water) => _$this._water = water;
 
+  ListBuilder<Contester> _leaderboard;
+  ListBuilder<Contester> get leaderboard =>
+      _$this._leaderboard ??= new ListBuilder<Contester>();
+  set leaderboard(ListBuilder<Contester> leaderboard) =>
+      _$this._leaderboard = leaderboard;
+
   InfoBuilder();
 
   InfoBuilder get _$this {
@@ -158,6 +186,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
       _electricity = _$v.electricity;
       _heating = _$v.heating;
       _water = _$v.water;
+      _leaderboard = _$v.leaderboard?.toBuilder();
       _$v = null;
     }
     return this;
@@ -178,9 +207,26 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
 
   @override
   _$Info build() {
-    final _$result = _$v ??
-        new _$Info._(
-            co2: co2, electricity: electricity, heating: heating, water: water);
+    _$Info _$result;
+    try {
+      _$result = _$v ??
+          new _$Info._(
+              co2: co2,
+              electricity: electricity,
+              heating: heating,
+              water: water,
+              leaderboard: leaderboard.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'leaderboard';
+        leaderboard.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Info', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
