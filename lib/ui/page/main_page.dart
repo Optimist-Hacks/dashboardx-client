@@ -63,9 +63,9 @@ class _MainPageState extends State<MainPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("co2 ${_state.info.co2}"),
+          Text("co2 ${_state.info.co2Emission}"),
           Text("electricity ${_state.info.electricity}"),
-          Text("electricity ${_state.info.electricity}"),
+          Text("electricity ${_state.info.heating}"),
           Text("water ${_state.info.water}"),
           Text("noise ${_state.noise}db"),
         ],

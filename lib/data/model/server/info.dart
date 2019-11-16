@@ -8,7 +8,7 @@ part 'info.g.dart';
 abstract class Info implements Built<Info, InfoBuilder> {
   static Serializer<Info> get serializer => _$infoSerializer;
 
-  double get co2;
+  double get co2Emission;
 
   double get electricity;
 

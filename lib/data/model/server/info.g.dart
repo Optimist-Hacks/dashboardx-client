@@ -18,8 +18,9 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
   Iterable<Object> serialize(Serializers serializers, Info object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'co2',
-      serializers.serialize(object.co2, specifiedType: const FullType(double)),
+      'co2Emission',
+      serializers.serialize(object.co2Emission,
+          specifiedType: const FullType(double)),
       'electricity',
       serializers.serialize(object.electricity,
           specifiedType: const FullType(double)),
@@ -49,8 +50,8 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'co2':
-          result.co2 = serializers.deserialize(value,
+        case 'co2Emission':
+          result.co2Emission = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
         case 'electricity':
@@ -80,7 +81,7 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
 
 class _$Info extends Info {
   @override
-  final double co2;
+  final double co2Emission;
   @override
   final double electricity;
   @override
@@ -94,10 +95,14 @@ class _$Info extends Info {
       (new InfoBuilder()..update(updates)).build();
 
   _$Info._(
-      {this.co2, this.electricity, this.heating, this.water, this.leaderboard})
+      {this.co2Emission,
+      this.electricity,
+      this.heating,
+      this.water,
+      this.leaderboard})
       : super._() {
-    if (co2 == null) {
-      throw new BuiltValueNullFieldError('Info', 'co2');
+    if (co2Emission == null) {
+      throw new BuiltValueNullFieldError('Info', 'co2Emission');
     }
     if (electricity == null) {
       throw new BuiltValueNullFieldError('Info', 'electricity');
@@ -124,7 +129,7 @@ class _$Info extends Info {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Info &&
-        co2 == other.co2 &&
+        co2Emission == other.co2Emission &&
         electricity == other.electricity &&
         heating == other.heating &&
         water == other.water &&
@@ -135,7 +140,7 @@ class _$Info extends Info {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, co2.hashCode), electricity.hashCode),
+            $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
                 heating.hashCode),
             water.hashCode),
         leaderboard.hashCode));
@@ -144,7 +149,7 @@ class _$Info extends Info {
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Info')
-          ..add('co2', co2)
+          ..add('co2Emission', co2Emission)
           ..add('electricity', electricity)
           ..add('heating', heating)
           ..add('water', water)
@@ -156,9 +161,9 @@ class _$Info extends Info {
 class InfoBuilder implements Builder<Info, InfoBuilder> {
   _$Info _$v;
 
-  double _co2;
-  double get co2 => _$this._co2;
-  set co2(double co2) => _$this._co2 = co2;
+  double _co2Emission;
+  double get co2Emission => _$this._co2Emission;
+  set co2Emission(double co2Emission) => _$this._co2Emission = co2Emission;
 
   double _electricity;
   double get electricity => _$this._electricity;
@@ -182,7 +187,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
 
   InfoBuilder get _$this {
     if (_$v != null) {
-      _co2 = _$v.co2;
+      _co2Emission = _$v.co2Emission;
       _electricity = _$v.electricity;
       _heating = _$v.heating;
       _water = _$v.water;
@@ -211,7 +216,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
     try {
       _$result = _$v ??
           new _$Info._(
-              co2: co2,
+              co2Emission: co2Emission,
               electricity: electricity,
               heating: heating,
               water: water,

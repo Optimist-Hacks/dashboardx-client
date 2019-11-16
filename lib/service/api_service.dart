@@ -19,10 +19,13 @@ class ApiService {
   static const _timeoutDuration = Duration(seconds: 30);
   final _client = http.Client();
 
-  Future<Info> getInfo() async {
+  Future<Info> getInfo({double noise}) async {
     Map<String, String> params = {
       'housingId': '$_houseId',
     };
+    if (noise != null) {
+      params['noise'] = '$noise';
+    }
     final jsonResponse = await _get('info', params: params);
     if (jsonResponse == null) {
       Log.e(_tag, "Response is null");

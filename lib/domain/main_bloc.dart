@@ -22,6 +22,8 @@ class MainBloc {
   final _mainStateBehaviorSubject = BehaviorSubject<MainState>();
   StreamSubscription<NoiseReading> _noiseSubscription;
   NoiseMeter _noiseMeter;
+  Timer timer;
+  double _noise;
 
   Stream<MainState> get state => _mainStateBehaviorSubject;
 
@@ -39,6 +41,7 @@ class MainBloc {
     } catch (err) {
       Log.e(_tag, "Can't stop recorder noise $err");
     }
+    timer?.cancel();
   }
 
   void _updateMainState(updates(MainStateBuilder builder)) {
@@ -54,7 +57,7 @@ class MainBloc {
 
     final initMainState = MainState((b) => b
       ..info = Info((i) => i
-        ..co2 = 0
+        ..co2Emission = 0
         ..electricity = 0
         ..heating = 0
         ..water = 0
@@ -67,18 +70,24 @@ class MainBloc {
       _onNewInfo(deserialize<Info>(json.decode(response)));
     }
 
-    _apiService.getInfo().then((info) => _onNewInfo(info));
-
     try {
       _noiseMeter = new NoiseMeter();
       _noiseSubscription = _noiseMeter.noiseStream.listen(_onNoise);
     } on NoiseMeterException catch (exception) {
       Log.e(_tag, "Can't start recorder noise $exception");
     }
+
+    _checkUpdates();
+    timer = Timer.periodic(Duration(seconds: 10), (Timer t) => _checkUpdates());
+  }
+
+  void _checkUpdates() {
+    Log.d(_tag, "Check updates");
+    _apiService.getInfo(noise: _noise).then((info) => _onNewInfo(info));
   }
 
   void _onNoise(NoiseReading noiseReading) {
-    Log.d(_tag, "New noise value ${noiseReading.db}");
+    _noise = noiseReading.db;
     _updateMainState((b) => b..noise = noiseReading.db);
   }
 
