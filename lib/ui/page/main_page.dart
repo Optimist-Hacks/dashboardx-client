@@ -6,6 +6,7 @@ import 'package:dashboardx/domain/main_bloc.dart';
 import 'package:dashboardx/service/api_service.dart';
 import 'package:dashboardx/service/preferences_service.dart';
 import 'package:dashboardx/ui/card/emotion_card.dart';
+import 'package:dashboardx/ui/card/emotion_tip_card.dart';
 import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,9 +77,7 @@ class _MainPageState extends State<MainPage> {
           autoPlay: true,
           items: [
             EmotionCard(10, 0, _state.info.emotion),
-            Container(color: Colors.grey),
-            Container(color: Colors.green),
-            Container(color: Colors.deepOrange),
+            EmotionTopCard(_state.info.emotion),
           ],
         ),
         _dotsIndicator(),
