@@ -15,9 +15,6 @@ class HttpCode {
 class ApiService {
   static const _timeoutDuration = Duration(seconds: 30);
   final _client = http.Client();
-  final Stream<String> languageCodeStream;
-
-  ApiService(this.languageCodeStream);
 
 //  Future<BuiltList<Category>> getContent() async {
 //    final params = {
