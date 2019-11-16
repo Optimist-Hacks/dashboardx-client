@@ -5,6 +5,7 @@ import 'package:dashboardx/data/model/state/main/main_state.dart';
 import 'package:dashboardx/domain/main_bloc.dart';
 import 'package:dashboardx/service/api_service.dart';
 import 'package:dashboardx/service/preferences_service.dart';
+import 'package:dashboardx/ui/card/emergency_card.dart';
 import 'package:dashboardx/ui/card/emotion_card.dart';
 import 'package:dashboardx/ui/card/emotion_tip_card.dart';
 import 'package:dashboardx/ui/card/weather_card.dart';
@@ -80,6 +81,7 @@ class _MainPageState extends State<MainPage> {
             EmotionCard(10, 0, _state.info.emotion),
             EmotionTopCard(_state.info.emotion),
             WeatherCard(),
+            EmergencyCard(),
           ],
         ),
         _dotsIndicator(),
