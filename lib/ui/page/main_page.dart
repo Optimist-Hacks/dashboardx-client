@@ -44,6 +44,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void dispose() {
     _subscriptions?.dispose();
+    _mainBloc?.dispose();
     super.dispose();
   }
 
@@ -59,11 +60,14 @@ class _MainPageState extends State<MainPage> {
   Widget _body() {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text("co2 ${_state.info.co2}"),
           Text("electricity ${_state.info.electricity}"),
           Text("electricity ${_state.info.electricity}"),
           Text("water ${_state.info.water}"),
+          Text("noise ${_state.noise}db"),
         ],
       ),
     );

@@ -8,5 +8,7 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
 
   Info get info;
 
+  double get noise;
+
   factory MainState([void Function(MainStateBuilder) updates]) = _$MainState;
 }

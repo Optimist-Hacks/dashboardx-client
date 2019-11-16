@@ -9,13 +9,18 @@ part of 'main_state.dart';
 class _$MainState extends MainState {
   @override
   final Info info;
+  @override
+  final double noise;
 
   factory _$MainState([void Function(MainStateBuilder) updates]) =>
       (new MainStateBuilder()..update(updates)).build();
 
-  _$MainState._({this.info}) : super._() {
+  _$MainState._({this.info, this.noise}) : super._() {
     if (info == null) {
       throw new BuiltValueNullFieldError('MainState', 'info');
+    }
+    if (noise == null) {
+      throw new BuiltValueNullFieldError('MainState', 'noise');
     }
   }
 
@@ -29,17 +34,19 @@ class _$MainState extends MainState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MainState && info == other.info;
+    return other is MainState && info == other.info && noise == other.noise;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, info.hashCode));
+    return $jf($jc($jc(0, info.hashCode), noise.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MainState')..add('info', info))
+    return (newBuiltValueToStringHelper('MainState')
+          ..add('info', info)
+          ..add('noise', noise))
         .toString();
   }
 }
@@ -51,11 +58,16 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   InfoBuilder get info => _$this._info ??= new InfoBuilder();
   set info(InfoBuilder info) => _$this._info = info;
 
+  double _noise;
+  double get noise => _$this._noise;
+  set noise(double noise) => _$this._noise = noise;
+
   MainStateBuilder();
 
   MainStateBuilder get _$this {
     if (_$v != null) {
       _info = _$v.info?.toBuilder();
+      _noise = _$v.noise;
       _$v = null;
     }
     return this;
@@ -78,7 +90,7 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   _$MainState build() {
     _$MainState _$result;
     try {
-      _$result = _$v ?? new _$MainState._(info: info.build());
+      _$result = _$v ?? new _$MainState._(info: info.build(), noise: noise);
     } catch (_) {
       String _$failedField;
       try {
