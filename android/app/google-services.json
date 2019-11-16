@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "401767018651",
+    "firebase_url": "https://dashboardx-e3cc4.firebaseio.com",
+    "project_id": "dashboardx-e3cc4",
+    "storage_bucket": "dashboardx-e3cc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401767018651:android:01f229ad984a2d23eb963e",
+        "android_client_info": {
+          "package_name": "dev.optimist.dashboardx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401767018651-nkebq9a4f6ck4isv59lvt08nb8gbs5hk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.optimist.dashboardx",
+            "certificate_hash": "50f40fa9b4060a6a156d2e83f9a5b49a3dacc754"
+          }
+        },
+        {
+          "client_id": "401767018651-ufithukimv4e8hor66ghdlonaaliv2g5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqFHL8e7IT60AAJyjbLfEyYVCiqYl9OfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401767018651-ufithukimv4e8hor66ghdlonaaliv2g5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

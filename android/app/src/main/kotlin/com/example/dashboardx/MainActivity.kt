@@ -1,4 +1,4 @@
-package com.example.dashboardx
+package dev.optimist.dashboardx
 
 import android.os.Bundle
 import io.flutter.app.FlutterActivity
