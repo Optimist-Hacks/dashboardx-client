@@ -7,6 +7,7 @@ import 'package:dashboardx/service/api_service.dart';
 import 'package:dashboardx/service/preferences_service.dart';
 import 'package:dashboardx/ui/card/emotion_card.dart';
 import 'package:dashboardx/ui/card/emotion_tip_card.dart';
+import 'package:dashboardx/ui/card/weather_card.dart';
 import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,6 +79,7 @@ class _MainPageState extends State<MainPage> {
           items: [
             EmotionCard(10, 0, _state.info.emotion),
             EmotionTopCard(_state.info.emotion),
+            WeatherCard(),
           ],
         ),
         _dotsIndicator(),

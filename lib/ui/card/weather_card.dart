@@ -3,54 +3,12 @@ import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:provider/provider.dart';
 
-const _tag = "dashboard_card";
+const _tag = "weather_card";
 
-class EmotionTopCard extends StatelessWidget {
-  final Emotion _emotion;
-
-  String _imagePath;
-  String _title;
-  String _description;
-
-  EmotionTopCard(this._emotion) {
-    final angryTotal = _emotion.angryTotal();
-    final sadTotal = _emotion.sadTotal();
-    final calmTotal = _emotion.calmTotal();
-    final funnyTotal = _emotion.funnyTotal();
-
-    if (angryTotal > sadTotal &&
-        angryTotal > calmTotal &&
-        angryTotal > funnyTotal) {
-      _imagePath = DashboardxIcons.angryTip;
-      _title = "Meditate";
-      _description =
-          "It will help to reduce stress and to concentrate on what's important";
-    } else if (sadTotal > angryTotal &&
-        sadTotal > calmTotal &&
-        sadTotal > calmTotal &&
-        sadTotal > funnyTotal) {
-      _imagePath = DashboardxIcons.sadTip;
-      _title = "Take a walk";
-      _description =
-          "Spend time with friends or outdoors. This will fill you up with energy";
-    } else if (calmTotal > angryTotal &&
-        calmTotal > sadTotal &&
-        calmTotal > funnyTotal &&
-        calmTotal > funnyTotal) {
-      _imagePath = DashboardxIcons.calmTip;
-      _title = "Study";
-      _description =
-          "Take time to do your homework or own project";
-    } else {
-      _imagePath = DashboardxIcons.funnyTip;
-      _title = "Contribute";
-      _description =
-          "Share your passion with others. Take time to volunteer or help the people around you";
-    }
-  }
-
+class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,7 +21,7 @@ class EmotionTopCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(23),
             child: Image.asset(
-              _imagePath,
+              DashboardxIcons.cloudy,
               width: 264,
               height: 196,
               fit: BoxFit.cover,
@@ -76,14 +34,14 @@ class EmotionTopCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Image.asset(
-                  DashboardxIcons.emotionTipIcon,
+                  DashboardxIcons.weatherIcon,
                   width: 35,
                   height: 39,
                   fit: BoxFit.cover,
                 ),
                 SizedBox(height: 20),
                 Text(
-                  _title,
+                  "Сloudy",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       height: 1.115,
@@ -92,7 +50,7 @@ class EmotionTopCard extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  _description,
+                  "Don't forget your scarf",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 5,
                   style: TextStyle(
