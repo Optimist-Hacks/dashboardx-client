@@ -8,6 +8,7 @@ part of 'serializer.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Contester.serializer)
+      ..add(Emotion.serializer)
       ..add(Info.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Contester)]),

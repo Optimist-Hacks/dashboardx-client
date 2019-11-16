@@ -34,6 +34,9 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       serializers.serialize(object.leaderboard,
           specifiedType:
               const FullType(BuiltList, const [const FullType(Contester)])),
+      'emotion',
+      serializers.serialize(object.emotion,
+          specifiedType: const FullType(Emotion)),
     ];
 
     return result;
@@ -72,6 +75,10 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
                       BuiltList, const [const FullType(Contester)]))
               as BuiltList<dynamic>);
           break;
+        case 'emotion':
+          result.emotion.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Emotion)) as Emotion);
+          break;
       }
     }
 
@@ -90,6 +97,8 @@ class _$Info extends Info {
   final double water;
   @override
   final BuiltList<Contester> leaderboard;
+  @override
+  final Emotion emotion;
 
   factory _$Info([void Function(InfoBuilder) updates]) =>
       (new InfoBuilder()..update(updates)).build();
@@ -99,7 +108,8 @@ class _$Info extends Info {
       this.electricity,
       this.heating,
       this.water,
-      this.leaderboard})
+      this.leaderboard,
+      this.emotion})
       : super._() {
     if (co2Emission == null) {
       throw new BuiltValueNullFieldError('Info', 'co2Emission');
@@ -115,6 +125,9 @@ class _$Info extends Info {
     }
     if (leaderboard == null) {
       throw new BuiltValueNullFieldError('Info', 'leaderboard');
+    }
+    if (emotion == null) {
+      throw new BuiltValueNullFieldError('Info', 'emotion');
     }
   }
 
@@ -133,17 +146,20 @@ class _$Info extends Info {
         electricity == other.electricity &&
         heating == other.heating &&
         water == other.water &&
-        leaderboard == other.leaderboard;
+        leaderboard == other.leaderboard &&
+        emotion == other.emotion;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
-                heating.hashCode),
-            water.hashCode),
-        leaderboard.hashCode));
+            $jc(
+                $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
+                    heating.hashCode),
+                water.hashCode),
+            leaderboard.hashCode),
+        emotion.hashCode));
   }
 
   @override
@@ -153,7 +169,8 @@ class _$Info extends Info {
           ..add('electricity', electricity)
           ..add('heating', heating)
           ..add('water', water)
-          ..add('leaderboard', leaderboard))
+          ..add('leaderboard', leaderboard)
+          ..add('emotion', emotion))
         .toString();
   }
 }
@@ -183,6 +200,10 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
   set leaderboard(ListBuilder<Contester> leaderboard) =>
       _$this._leaderboard = leaderboard;
 
+  EmotionBuilder _emotion;
+  EmotionBuilder get emotion => _$this._emotion ??= new EmotionBuilder();
+  set emotion(EmotionBuilder emotion) => _$this._emotion = emotion;
+
   InfoBuilder();
 
   InfoBuilder get _$this {
@@ -192,6 +213,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
       _heating = _$v.heating;
       _water = _$v.water;
       _leaderboard = _$v.leaderboard?.toBuilder();
+      _emotion = _$v.emotion?.toBuilder();
       _$v = null;
     }
     return this;
@@ -220,12 +242,15 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
               electricity: electricity,
               heating: heating,
               water: water,
-              leaderboard: leaderboard.build());
+              leaderboard: leaderboard.build(),
+              emotion: emotion.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'leaderboard';
         leaderboard.build();
+        _$failedField = 'emotion';
+        emotion.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Info', _$failedField, e.toString());

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dashboardx/data/model/serializer.dart';
 import 'package:dashboardx/data/model/server/contester.dart';
+import 'package:dashboardx/data/model/server/emotion.dart';
 import 'package:dashboardx/data/model/server/info.dart';
 import 'package:dashboardx/data/model/state/main/main_state.dart';
 import 'package:dashboardx/service/preferences_service.dart';
@@ -61,7 +62,16 @@ class MainBloc {
         ..electricity = 0
         ..heating = 0
         ..water = 0
-        ..leaderboard = ListBuilder<Contester>()).toBuilder()
+        ..leaderboard = ListBuilder<Contester>()
+        ..emotion = Emotion((e) => e
+          ..anger = 0
+          ..contempt = 0
+          ..disgust = 0
+          ..fear = 0
+          ..happiness = 0
+          ..neutral = 0
+          ..sadness = 0
+          ..surprise = 0).toBuilder()).toBuilder()
       ..noise = 0);
     _mainStateBehaviorSubject.add(initMainState);
 
