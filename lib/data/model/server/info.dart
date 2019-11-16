@@ -21,6 +21,9 @@ abstract class Info implements Built<Info, InfoBuilder> {
 
   Emotion get emotion;
 
+  @nullable
+  String get warning;
+
   Info._();
 
   factory Info([void Function(InfoBuilder) updates]) = _$Info;

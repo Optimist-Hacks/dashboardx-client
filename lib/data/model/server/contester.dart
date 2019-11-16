@@ -6,7 +6,7 @@ part 'contester.g.dart';
 abstract class Contester implements Built<Contester, ContesterBuilder> {
   static Serializer<Contester> get serializer => _$contesterSerializer;
 
-  double get co2;
+  double get co2Emission;
 
   String get name;
 

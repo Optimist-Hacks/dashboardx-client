@@ -52,57 +52,27 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-//    if (_state == null) {
-//      return Center(child: CircularProgressIndicator());
-//    }
-
+    if (_state == null) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Scaffold(body: _body());
   }
 
   Widget _body() {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return CarouselSlider(
-        aspectRatio: width / height,
-        scrollDirection: Axis.vertical,
-        viewportFraction: 1.0,
-        autoPlay: true,
-        items: [
-        EmotionCard(10, 0, _state.info.emotion);
-    Container(color: Colors.grey)
-    ,
-    Container(color: Colors.green),
-    Container(color: Colors.deepOrange),
-    ]
+      aspectRatio: width / height,
+      scrollDirection: Axis.vertical,
+      viewportFraction: 1.0,
+      autoPlay: true,
+      items: [
+        EmotionCard(10, 0, _state.info.emotion),
+        Container(color: Colors.grey),
+        Container(color: Colors.green),
+        Container(color: Colors.deepOrange),
+      ],
     );
-
-//    return Center(
-//      child: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
-//        crossAxisAlignment: CrossAxisAlignment.center,
-//        children: <Widget>[
-//          Text("co2 ${_state.info.co2Emission}"),
-//          Text("electricity ${_state.info.electricity}"),
-//          Text("electricity ${_state.info.heating}"),
-//          Text("water ${_state.info.water}"),
-//          Text("noise ${_state.noise}db"),
-//          Text("anger ${_state.info.emotion.anger}"),
-//          Text("contempt ${_state.info.emotion.contempt}"),
-//          Text("disgust ${_state.info.emotion.disgust}"),
-//          Text("fear ${_state.info.emotion.fear}"),
-//          Text("happiness ${_state.info.emotion.happiness}"),
-//          Text("neutral ${_state.info.emotion.neutral}"),
-//          Text("sadness ${_state.info.emotion.sadness}"),
-//          Text("surprise ${_state.info.emotion.surprise}"),
-//        ],
-//      ),
-//    );
   }
 }

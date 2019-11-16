@@ -38,7 +38,12 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       serializers.serialize(object.emotion,
           specifiedType: const FullType(Emotion)),
     ];
-
+    if (object.warning != null) {
+      result
+        ..add('warning')
+        ..add(serializers.serialize(object.warning,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -79,6 +84,10 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
           result.emotion.replace(serializers.deserialize(value,
               specifiedType: const FullType(Emotion)) as Emotion);
           break;
+        case 'warning':
+          result.warning = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
       }
     }
 
@@ -99,6 +108,8 @@ class _$Info extends Info {
   final BuiltList<Contester> leaderboard;
   @override
   final Emotion emotion;
+  @override
+  final String warning;
 
   factory _$Info([void Function(InfoBuilder) updates]) =>
       (new InfoBuilder()..update(updates)).build();
@@ -109,7 +120,8 @@ class _$Info extends Info {
       this.heating,
       this.water,
       this.leaderboard,
-      this.emotion})
+      this.emotion,
+      this.warning})
       : super._() {
     if (co2Emission == null) {
       throw new BuiltValueNullFieldError('Info', 'co2Emission');
@@ -147,7 +159,8 @@ class _$Info extends Info {
         heating == other.heating &&
         water == other.water &&
         leaderboard == other.leaderboard &&
-        emotion == other.emotion;
+        emotion == other.emotion &&
+        warning == other.warning;
   }
 
   @override
@@ -155,11 +168,13 @@ class _$Info extends Info {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
-                    heating.hashCode),
-                water.hashCode),
-            leaderboard.hashCode),
-        emotion.hashCode));
+                $jc(
+                    $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
+                        heating.hashCode),
+                    water.hashCode),
+                leaderboard.hashCode),
+            emotion.hashCode),
+        warning.hashCode));
   }
 
   @override
@@ -170,7 +185,8 @@ class _$Info extends Info {
           ..add('heating', heating)
           ..add('water', water)
           ..add('leaderboard', leaderboard)
-          ..add('emotion', emotion))
+          ..add('emotion', emotion)
+          ..add('warning', warning))
         .toString();
   }
 }
@@ -204,6 +220,10 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
   EmotionBuilder get emotion => _$this._emotion ??= new EmotionBuilder();
   set emotion(EmotionBuilder emotion) => _$this._emotion = emotion;
 
+  String _warning;
+  String get warning => _$this._warning;
+  set warning(String warning) => _$this._warning = warning;
+
   InfoBuilder();
 
   InfoBuilder get _$this {
@@ -214,6 +234,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
       _water = _$v.water;
       _leaderboard = _$v.leaderboard?.toBuilder();
       _emotion = _$v.emotion?.toBuilder();
+      _warning = _$v.warning;
       _$v = null;
     }
     return this;
@@ -243,7 +264,8 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
               heating: heating,
               water: water,
               leaderboard: leaderboard.build(),
-              emotion: emotion.build());
+              emotion: emotion.build(),
+              warning: warning);
     } catch (_) {
       String _$failedField;
       try {

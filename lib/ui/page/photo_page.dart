@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:dashboardx/domain/camera_bloc.dart';
-import 'package:dashboardx/utils/log.dart';
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +12,6 @@ class PhotoPage extends StatefulWidget {
 }
 
 class _PhotoPageState extends State<PhotoPage> {
-
   CameraBloc _cameraBloc;
 
   @override
