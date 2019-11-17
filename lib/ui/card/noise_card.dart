@@ -22,7 +22,7 @@ class NoiseCard extends StatelessWidget {
         Flexible(
           child: titleSubtitleDate(
             "Noise",
-            "Do qui nostrud deserunt sunt officia magna Lorem nisi laborum dolore irure conse...",
+            "Keep quiet, somebody might be sleeping",
             "${Dates.currentData()}",
             emojiPath: DashboardxIcons.noise,
             emojiSize: Size(35, 39),
@@ -45,7 +45,6 @@ class NoiseCard extends StatelessWidget {
             "45dB",
             0.20,
             Color(0xFF49C154),
-            uptitle: "We",
           ),
           DColumn(
             DashboardxIcons.sad,

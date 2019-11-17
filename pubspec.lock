@@ -371,9 +371,9 @@ packages:
   noise_meter:
     dependency: "direct main"
     description:
-      name: noise_meter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "/Users/yuriy.dorofeev/it/Junction-2019/flutter-plugins/packages/noise_meter"
+      relative: false
+    source: path
     version: "1.0.1"
   package_config:
     dependency: transitive
