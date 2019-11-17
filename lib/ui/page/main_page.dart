@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
       children: <Widget>[
         CarouselSlider(
           aspectRatio: width / height,
-          scrollDirection: Axis.vertical,
+          scrollDirection: Axis.horizontal,
           viewportFraction: 1.0,
           autoPlay: false,
           onPageChanged: _onPageChanged,
