@@ -4,6 +4,7 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/data/model/server/emotion.dart';
 import 'package:dashboardx/data/model/server/info.dart';
+import 'package:dashboardx/data/model/server/warning.dart';
 
 part 'serializer.g.dart';
 
@@ -11,6 +12,7 @@ part 'serializer.g.dart';
   Info,
   Contester,
   Emotion,
+  Warning,
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

@@ -10,6 +10,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Contester.serializer)
       ..add(Emotion.serializer)
       ..add(Info.serializer)
+      ..add(Warning.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Contester)]),
           () => new ListBuilder<Contester>()))

@@ -3,6 +3,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/data/model/server/emotion.dart';
+import 'package:dashboardx/data/model/server/warning.dart';
 
 part 'info.g.dart';
 
@@ -22,7 +23,7 @@ abstract class Info implements Built<Info, InfoBuilder> {
   Emotion get emotionDaily;
 
   @nullable
-  String get warning;
+  Warning get warning;
 
   Info._();
 

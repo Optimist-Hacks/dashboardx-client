@@ -42,7 +42,7 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       result
         ..add('warning')
         ..add(serializers.serialize(object.warning,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(Warning)));
     }
     return result;
   }
@@ -85,8 +85,8 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
               specifiedType: const FullType(Emotion)) as Emotion);
           break;
         case 'warning':
-          result.warning = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.warning.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Warning)) as Warning);
           break;
       }
     }
@@ -109,7 +109,7 @@ class _$Info extends Info {
   @override
   final Emotion emotionDaily;
   @override
-  final String warning;
+  final Warning warning;
 
   factory _$Info([void Function(InfoBuilder) updates]) =>
       (new InfoBuilder()..update(updates)).build();
@@ -226,9 +226,9 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
   set emotionDaily(EmotionBuilder emotionDaily) =>
       _$this._emotionDaily = emotionDaily;
 
-  String _warning;
-  String get warning => _$this._warning;
-  set warning(String warning) => _$this._warning = warning;
+  WarningBuilder _warning;
+  WarningBuilder get warning => _$this._warning ??= new WarningBuilder();
+  set warning(WarningBuilder warning) => _$this._warning = warning;
 
   InfoBuilder();
 
@@ -240,7 +240,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
       _waterDaily = _$v.waterDaily;
       _leaderboard = _$v.leaderboard?.toBuilder();
       _emotionDaily = _$v.emotionDaily?.toBuilder();
-      _warning = _$v.warning;
+      _warning = _$v.warning?.toBuilder();
       _$v = null;
     }
     return this;
@@ -271,7 +271,7 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
               waterDaily: waterDaily,
               leaderboard: leaderboard.build(),
               emotionDaily: emotionDaily.build(),
-              warning: warning);
+              warning: _warning?.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -279,6 +279,8 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
         leaderboard.build();
         _$failedField = 'emotionDaily';
         emotionDaily.build();
+        _$failedField = 'warning';
+        _warning?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Info', _$failedField, e.toString());

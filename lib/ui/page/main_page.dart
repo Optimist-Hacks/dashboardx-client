@@ -12,11 +12,14 @@ import 'package:dashboardx/ui/card/emotion_tip_card.dart';
 import 'package:dashboardx/ui/card/noise_card.dart';
 import 'package:dashboardx/ui/card/weather_card.dart';
 import 'package:dashboardx/ui/dashboardx_colors.dart';
+import 'package:dashboardx/utils/texts.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../service/api_service.dart';
 
 const _tag = "main_page";
 
@@ -69,6 +72,16 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _body() {
+    if (_state.info.warning != null &&
+        !Texts.isEmpty(_state.info.warning.name) &&
+        !Texts.isEmpty(_state.info.warning.description) &&
+        ApiService.houseId == _state.info.warning.housingId) {
+      return EmergencyCard(
+        _state.info.warning.name,
+        _state.info.warning.description,
+      );
+    }
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -85,7 +98,6 @@ class _MainPageState extends State<MainPage> {
             EmotionCard(_state.info.emotionDaily),
             EmotionTopCard(_state.info.emotionDaily),
             WeatherCard(),
-            EmergencyCard(),
           ],
         ),
         _dotsIndicator(),

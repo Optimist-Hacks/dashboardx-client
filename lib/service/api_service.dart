@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 
 const _tag = "api_service";
 const _baseUrl = "4a99d15c.ngrok.io";
-const _houseId = "4a944fb8-7e9b-4041-aed6-cded0c797562";
 
 class HttpCode {
   static const OK = 200;
@@ -18,11 +17,12 @@ class HttpCode {
 
 class ApiService {
   static const _timeoutDuration = Duration(seconds: 30);
+  static final houseId = "4a944fb8-7e9b-4041-aed6-cded0c797562";
   final _client = http.Client();
 
   Future<Info> getInfo({double noise}) async {
     Map<String, String> params = {
-      'housingId': _houseId,
+      'housingId': houseId,
     };
     if (noise != null) {
       params['noise'] = '$noise';
@@ -45,7 +45,7 @@ class ApiService {
         filename: "file",
       ),
     );
-    request.fields['housingId'] = _houseId;
+    request.fields['housingId'] = houseId;
 
     Log.d(_tag, "-> POST url = $uri");
 
