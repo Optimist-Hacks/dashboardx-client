@@ -18,13 +18,15 @@ class _$ContesterSerializer implements StructuredSerializer<Contester> {
   Iterable<Object> serialize(Serializers serializers, Contester object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'co2Emission',
-      serializers.serialize(object.co2Emission,
+      'co2EmissionMonthly',
+      serializers.serialize(object.co2EmissionMonthly,
           specifiedType: const FullType(double)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'place',
-      serializers.serialize(object.place, specifiedType: const FullType(int)),
+      'housingName',
+      serializers.serialize(object.housingName,
+          specifiedType: const FullType(String)),
+      'housingId',
+      serializers.serialize(object.housingId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -41,17 +43,17 @@ class _$ContesterSerializer implements StructuredSerializer<Contester> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'co2Emission':
-          result.co2Emission = serializers.deserialize(value,
+        case 'co2EmissionMonthly':
+          result.co2EmissionMonthly = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'name':
-          result.name = serializers.deserialize(value,
+        case 'housingName':
+          result.housingName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'place':
-          result.place = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+        case 'housingId':
+          result.housingId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -62,24 +64,25 @@ class _$ContesterSerializer implements StructuredSerializer<Contester> {
 
 class _$Contester extends Contester {
   @override
-  final double co2Emission;
+  final double co2EmissionMonthly;
   @override
-  final String name;
+  final String housingName;
   @override
-  final int place;
+  final String housingId;
 
   factory _$Contester([void Function(ContesterBuilder) updates]) =>
       (new ContesterBuilder()..update(updates)).build();
 
-  _$Contester._({this.co2Emission, this.name, this.place}) : super._() {
-    if (co2Emission == null) {
-      throw new BuiltValueNullFieldError('Contester', 'co2Emission');
+  _$Contester._({this.co2EmissionMonthly, this.housingName, this.housingId})
+      : super._() {
+    if (co2EmissionMonthly == null) {
+      throw new BuiltValueNullFieldError('Contester', 'co2EmissionMonthly');
     }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('Contester', 'name');
+    if (housingName == null) {
+      throw new BuiltValueNullFieldError('Contester', 'housingName');
     }
-    if (place == null) {
-      throw new BuiltValueNullFieldError('Contester', 'place');
+    if (housingId == null) {
+      throw new BuiltValueNullFieldError('Contester', 'housingId');
     }
   }
 
@@ -94,23 +97,24 @@ class _$Contester extends Contester {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Contester &&
-        co2Emission == other.co2Emission &&
-        name == other.name &&
-        place == other.place;
+        co2EmissionMonthly == other.co2EmissionMonthly &&
+        housingName == other.housingName &&
+        housingId == other.housingId;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, co2Emission.hashCode), name.hashCode), place.hashCode));
+    return $jf($jc(
+        $jc($jc(0, co2EmissionMonthly.hashCode), housingName.hashCode),
+        housingId.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Contester')
-          ..add('co2Emission', co2Emission)
-          ..add('name', name)
-          ..add('place', place))
+          ..add('co2EmissionMonthly', co2EmissionMonthly)
+          ..add('housingName', housingName)
+          ..add('housingId', housingId))
         .toString();
   }
 }
@@ -118,25 +122,26 @@ class _$Contester extends Contester {
 class ContesterBuilder implements Builder<Contester, ContesterBuilder> {
   _$Contester _$v;
 
-  double _co2Emission;
-  double get co2Emission => _$this._co2Emission;
-  set co2Emission(double co2Emission) => _$this._co2Emission = co2Emission;
+  double _co2EmissionMonthly;
+  double get co2EmissionMonthly => _$this._co2EmissionMonthly;
+  set co2EmissionMonthly(double co2EmissionMonthly) =>
+      _$this._co2EmissionMonthly = co2EmissionMonthly;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String _housingName;
+  String get housingName => _$this._housingName;
+  set housingName(String housingName) => _$this._housingName = housingName;
 
-  int _place;
-  int get place => _$this._place;
-  set place(int place) => _$this._place = place;
+  String _housingId;
+  String get housingId => _$this._housingId;
+  set housingId(String housingId) => _$this._housingId = housingId;
 
   ContesterBuilder();
 
   ContesterBuilder get _$this {
     if (_$v != null) {
-      _co2Emission = _$v.co2Emission;
-      _name = _$v.name;
-      _place = _$v.place;
+      _co2EmissionMonthly = _$v.co2EmissionMonthly;
+      _housingName = _$v.housingName;
+      _housingId = _$v.housingId;
       _$v = null;
     }
     return this;
@@ -158,7 +163,10 @@ class ContesterBuilder implements Builder<Contester, ContesterBuilder> {
   @override
   _$Contester build() {
     final _$result = _$v ??
-        new _$Contester._(co2Emission: co2Emission, name: name, place: place);
+        new _$Contester._(
+            co2EmissionMonthly: co2EmissionMonthly,
+            housingName: housingName,
+            housingId: housingId);
     replace(_$result);
     return _$result;
   }

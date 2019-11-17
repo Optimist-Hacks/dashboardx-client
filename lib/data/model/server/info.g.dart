@@ -18,24 +18,24 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
   Iterable<Object> serialize(Serializers serializers, Info object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'co2Emission',
-      serializers.serialize(object.co2Emission,
+      'co2EmissionDaily',
+      serializers.serialize(object.co2EmissionDaily,
           specifiedType: const FullType(double)),
-      'electricity',
-      serializers.serialize(object.electricity,
+      'electricityDaily',
+      serializers.serialize(object.electricityDaily,
           specifiedType: const FullType(double)),
-      'heating',
-      serializers.serialize(object.heating,
+      'heatingDaily',
+      serializers.serialize(object.heatingDaily,
           specifiedType: const FullType(double)),
-      'water',
-      serializers.serialize(object.water,
+      'waterDaily',
+      serializers.serialize(object.waterDaily,
           specifiedType: const FullType(double)),
       'leaderboard',
       serializers.serialize(object.leaderboard,
           specifiedType:
               const FullType(BuiltList, const [const FullType(Contester)])),
-      'emotion',
-      serializers.serialize(object.emotion,
+      'emotionDaily',
+      serializers.serialize(object.emotionDaily,
           specifiedType: const FullType(Emotion)),
     ];
     if (object.warning != null) {
@@ -58,20 +58,20 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'co2Emission':
-          result.co2Emission = serializers.deserialize(value,
+        case 'co2EmissionDaily':
+          result.co2EmissionDaily = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'electricity':
-          result.electricity = serializers.deserialize(value,
+        case 'electricityDaily':
+          result.electricityDaily = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'heating':
-          result.heating = serializers.deserialize(value,
+        case 'heatingDaily':
+          result.heatingDaily = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'water':
-          result.water = serializers.deserialize(value,
+        case 'waterDaily':
+          result.waterDaily = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
         case 'leaderboard':
@@ -80,8 +80,8 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
                       BuiltList, const [const FullType(Contester)]))
               as BuiltList<dynamic>);
           break;
-        case 'emotion':
-          result.emotion.replace(serializers.deserialize(value,
+        case 'emotionDaily':
+          result.emotionDaily.replace(serializers.deserialize(value,
               specifiedType: const FullType(Emotion)) as Emotion);
           break;
         case 'warning':
@@ -97,17 +97,17 @@ class _$InfoSerializer implements StructuredSerializer<Info> {
 
 class _$Info extends Info {
   @override
-  final double co2Emission;
+  final double co2EmissionDaily;
   @override
-  final double electricity;
+  final double electricityDaily;
   @override
-  final double heating;
+  final double heatingDaily;
   @override
-  final double water;
+  final double waterDaily;
   @override
   final BuiltList<Contester> leaderboard;
   @override
-  final Emotion emotion;
+  final Emotion emotionDaily;
   @override
   final String warning;
 
@@ -115,31 +115,31 @@ class _$Info extends Info {
       (new InfoBuilder()..update(updates)).build();
 
   _$Info._(
-      {this.co2Emission,
-      this.electricity,
-      this.heating,
-      this.water,
+      {this.co2EmissionDaily,
+      this.electricityDaily,
+      this.heatingDaily,
+      this.waterDaily,
       this.leaderboard,
-      this.emotion,
+      this.emotionDaily,
       this.warning})
       : super._() {
-    if (co2Emission == null) {
-      throw new BuiltValueNullFieldError('Info', 'co2Emission');
+    if (co2EmissionDaily == null) {
+      throw new BuiltValueNullFieldError('Info', 'co2EmissionDaily');
     }
-    if (electricity == null) {
-      throw new BuiltValueNullFieldError('Info', 'electricity');
+    if (electricityDaily == null) {
+      throw new BuiltValueNullFieldError('Info', 'electricityDaily');
     }
-    if (heating == null) {
-      throw new BuiltValueNullFieldError('Info', 'heating');
+    if (heatingDaily == null) {
+      throw new BuiltValueNullFieldError('Info', 'heatingDaily');
     }
-    if (water == null) {
-      throw new BuiltValueNullFieldError('Info', 'water');
+    if (waterDaily == null) {
+      throw new BuiltValueNullFieldError('Info', 'waterDaily');
     }
     if (leaderboard == null) {
       throw new BuiltValueNullFieldError('Info', 'leaderboard');
     }
-    if (emotion == null) {
-      throw new BuiltValueNullFieldError('Info', 'emotion');
+    if (emotionDaily == null) {
+      throw new BuiltValueNullFieldError('Info', 'emotionDaily');
     }
   }
 
@@ -154,12 +154,12 @@ class _$Info extends Info {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Info &&
-        co2Emission == other.co2Emission &&
-        electricity == other.electricity &&
-        heating == other.heating &&
-        water == other.water &&
+        co2EmissionDaily == other.co2EmissionDaily &&
+        electricityDaily == other.electricityDaily &&
+        heatingDaily == other.heatingDaily &&
+        waterDaily == other.waterDaily &&
         leaderboard == other.leaderboard &&
-        emotion == other.emotion &&
+        emotionDaily == other.emotionDaily &&
         warning == other.warning;
   }
 
@@ -169,23 +169,25 @@ class _$Info extends Info {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, co2Emission.hashCode), electricity.hashCode),
-                        heating.hashCode),
-                    water.hashCode),
+                    $jc(
+                        $jc($jc(0, co2EmissionDaily.hashCode),
+                            electricityDaily.hashCode),
+                        heatingDaily.hashCode),
+                    waterDaily.hashCode),
                 leaderboard.hashCode),
-            emotion.hashCode),
+            emotionDaily.hashCode),
         warning.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Info')
-          ..add('co2Emission', co2Emission)
-          ..add('electricity', electricity)
-          ..add('heating', heating)
-          ..add('water', water)
+          ..add('co2EmissionDaily', co2EmissionDaily)
+          ..add('electricityDaily', electricityDaily)
+          ..add('heatingDaily', heatingDaily)
+          ..add('waterDaily', waterDaily)
           ..add('leaderboard', leaderboard)
-          ..add('emotion', emotion)
+          ..add('emotionDaily', emotionDaily)
           ..add('warning', warning))
         .toString();
   }
@@ -194,21 +196,23 @@ class _$Info extends Info {
 class InfoBuilder implements Builder<Info, InfoBuilder> {
   _$Info _$v;
 
-  double _co2Emission;
-  double get co2Emission => _$this._co2Emission;
-  set co2Emission(double co2Emission) => _$this._co2Emission = co2Emission;
+  double _co2EmissionDaily;
+  double get co2EmissionDaily => _$this._co2EmissionDaily;
+  set co2EmissionDaily(double co2EmissionDaily) =>
+      _$this._co2EmissionDaily = co2EmissionDaily;
 
-  double _electricity;
-  double get electricity => _$this._electricity;
-  set electricity(double electricity) => _$this._electricity = electricity;
+  double _electricityDaily;
+  double get electricityDaily => _$this._electricityDaily;
+  set electricityDaily(double electricityDaily) =>
+      _$this._electricityDaily = electricityDaily;
 
-  double _heating;
-  double get heating => _$this._heating;
-  set heating(double heating) => _$this._heating = heating;
+  double _heatingDaily;
+  double get heatingDaily => _$this._heatingDaily;
+  set heatingDaily(double heatingDaily) => _$this._heatingDaily = heatingDaily;
 
-  double _water;
-  double get water => _$this._water;
-  set water(double water) => _$this._water = water;
+  double _waterDaily;
+  double get waterDaily => _$this._waterDaily;
+  set waterDaily(double waterDaily) => _$this._waterDaily = waterDaily;
 
   ListBuilder<Contester> _leaderboard;
   ListBuilder<Contester> get leaderboard =>
@@ -216,9 +220,11 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
   set leaderboard(ListBuilder<Contester> leaderboard) =>
       _$this._leaderboard = leaderboard;
 
-  EmotionBuilder _emotion;
-  EmotionBuilder get emotion => _$this._emotion ??= new EmotionBuilder();
-  set emotion(EmotionBuilder emotion) => _$this._emotion = emotion;
+  EmotionBuilder _emotionDaily;
+  EmotionBuilder get emotionDaily =>
+      _$this._emotionDaily ??= new EmotionBuilder();
+  set emotionDaily(EmotionBuilder emotionDaily) =>
+      _$this._emotionDaily = emotionDaily;
 
   String _warning;
   String get warning => _$this._warning;
@@ -228,12 +234,12 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
 
   InfoBuilder get _$this {
     if (_$v != null) {
-      _co2Emission = _$v.co2Emission;
-      _electricity = _$v.electricity;
-      _heating = _$v.heating;
-      _water = _$v.water;
+      _co2EmissionDaily = _$v.co2EmissionDaily;
+      _electricityDaily = _$v.electricityDaily;
+      _heatingDaily = _$v.heatingDaily;
+      _waterDaily = _$v.waterDaily;
       _leaderboard = _$v.leaderboard?.toBuilder();
-      _emotion = _$v.emotion?.toBuilder();
+      _emotionDaily = _$v.emotionDaily?.toBuilder();
       _warning = _$v.warning;
       _$v = null;
     }
@@ -259,20 +265,20 @@ class InfoBuilder implements Builder<Info, InfoBuilder> {
     try {
       _$result = _$v ??
           new _$Info._(
-              co2Emission: co2Emission,
-              electricity: electricity,
-              heating: heating,
-              water: water,
+              co2EmissionDaily: co2EmissionDaily,
+              electricityDaily: electricityDaily,
+              heatingDaily: heatingDaily,
+              waterDaily: waterDaily,
               leaderboard: leaderboard.build(),
-              emotion: emotion.build(),
+              emotionDaily: emotionDaily.build(),
               warning: warning);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'leaderboard';
         leaderboard.build();
-        _$failedField = 'emotion';
-        emotion.build();
+        _$failedField = 'emotionDaily';
+        emotionDaily.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Info', _$failedField, e.toString());

@@ -82,8 +82,8 @@ class _MainPageState extends State<MainPage> {
           items: [
             EmissionCard(),
             NoiseCard(),
-            EmotionCard(_state.info.emotion),
-            EmotionTopCard(_state.info.emotion),
+            EmotionCard(_state.info.emotionDaily),
+            EmotionTopCard(_state.info.emotionDaily),
             WeatherCard(),
             EmergencyCard(),
           ],

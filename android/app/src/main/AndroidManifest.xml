@@ -11,7 +11,7 @@
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="dashboardx"
+        android:label="DashboardX"
         android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="allowBackup">

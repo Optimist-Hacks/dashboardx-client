@@ -6,11 +6,11 @@ part 'contester.g.dart';
 abstract class Contester implements Built<Contester, ContesterBuilder> {
   static Serializer<Contester> get serializer => _$contesterSerializer;
 
-  double get co2Emission;
+  double get co2EmissionMonthly;
 
-  String get name;
+  String get housingName;
 
-  int get place;
+  String get housingId;
 
   Contester._();
 

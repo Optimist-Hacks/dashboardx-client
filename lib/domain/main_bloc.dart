@@ -57,12 +57,12 @@ class MainBloc {
 
     final initMainState = MainState((b) => b
       ..info = Info((i) => i
-        ..co2Emission = 0
-        ..electricity = 0
-        ..heating = 0
-        ..water = 0
+        ..co2EmissionDaily = 0
+        ..electricityDaily = 0
+        ..heatingDaily = 0
+        ..waterDaily = 0
         ..leaderboard = ListBuilder<Contester>()
-        ..emotion = Emotion((e) => e
+        ..emotionDaily = Emotion((e) => e
           ..anger = 0
           ..contempt = 0
           ..disgust = 0

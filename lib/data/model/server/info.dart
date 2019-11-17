@@ -9,17 +9,17 @@ part 'info.g.dart';
 abstract class Info implements Built<Info, InfoBuilder> {
   static Serializer<Info> get serializer => _$infoSerializer;
 
-  double get co2Emission;
+  double get co2EmissionDaily;
 
-  double get electricity;
+  double get electricityDaily;
 
-  double get heating;
+  double get heatingDaily;
 
-  double get water;
+  double get waterDaily;
 
   BuiltList<Contester> get leaderboard;
 
-  Emotion get emotion;
+  Emotion get emotionDaily;
 
   @nullable
   String get warning;
