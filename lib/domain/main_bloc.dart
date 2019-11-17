@@ -1,19 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dashboardx/data/model/serializer.dart';
 import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/data/model/server/emotion.dart';
 import 'package:dashboardx/data/model/server/info.dart';
 import 'package:dashboardx/data/model/state/main/main_state.dart';
+import 'package:dashboardx/service/api_service.dart';
 import 'package:dashboardx/service/preferences_service.dart';
+import 'package:dashboardx/utils/log.dart';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:built_collection/built_collection.dart';
-
-import 'package:dashboardx/service/api_service.dart';
-import 'package:dashboardx/utils/log.dart';
 
 const _tag = "main_bloc";
 

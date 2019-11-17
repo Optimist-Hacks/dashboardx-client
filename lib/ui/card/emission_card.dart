@@ -1,4 +1,3 @@
-import 'package:dashboardx/data/model/server/emotion.dart';
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:dashboardx/ui/widget/d_column.dart';
 import 'package:dashboardx/ui/widget/utils.dart';
@@ -7,11 +6,7 @@ import 'package:flutter/material.dart';
 
 const _tag = "dashboard_card";
 
-class EmotionCard extends StatelessWidget {
-  final Emotion _emotion;
-
-  EmotionCard(this._emotion);
-
+class EmissionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _body();
@@ -23,9 +18,11 @@ class EmotionCard extends StatelessWidget {
       children: <Widget>[
         Flexible(
           child: titleSubtitleDate(
-            "Student \nHouse",
-            "Now a lot of people are sad, we recommend a walk with friends!",
+            "CO2 Emission",
+            "Do qui nostrud deserunt sunt officia magna Lorem nisi laborum dolore irure conse...",
             "21.10.2019",
+            emojiPath: DashboardxIcons.emission,
+            emojiSize: Size(26, 29),
           ),
         ),
         Flexible(child: _columns()),
@@ -41,32 +38,32 @@ class EmotionCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           DColumn(
-            DashboardxIcons.angry,
-            "${(0.20 * 100).toInt()}%",
+            DashboardxIcons.sad,
+            "13Kg",
             0.20,
-            Color(0xFFF2D0C5).withOpacity(0.4),
-            title: "Angry",
+            Color(0xFF25265E).withOpacity(0.05),
+            title: "Build. 2",
           ),
           DColumn(
             DashboardxIcons.sad,
-            "${(0.10 * 100).toInt()}%",
+            "13Kg",
             0.10,
-            Color(0xFFC8E7FA).withOpacity(0.4),
-            title: "Sad",
+            Color(0xFF25265E).withOpacity(0.05),
+            title: "Build. 1",
           ),
           DColumn(
             DashboardxIcons.calm,
-            "${(0.40 * 100).toInt()}%",
+            "13Kg",
             0.40,
-            Color(0xFFC9C9D8).withOpacity(0.4),
-            title: "Calm",
+            Color(0xFFF6A051),
+            title: "Build. 12",
           ),
           DColumn(
-            DashboardxIcons.funny,
-            "${(0.30 * 100).toInt()}%",
+            DashboardxIcons.calm,
+            "13Kg",
             0.30,
-            Color(0xFFC5E9CB).withOpacity(0.4),
-            title: "Funny",
+            Color(0xFF25265E).withOpacity(0.05),
+            title: "Build. 23",
           ),
         ],
       ),

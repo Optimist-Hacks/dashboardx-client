@@ -6,8 +6,10 @@ import 'package:dashboardx/domain/main_bloc.dart';
 import 'package:dashboardx/service/api_service.dart';
 import 'package:dashboardx/service/preferences_service.dart';
 import 'package:dashboardx/ui/card/emergency_card.dart';
+import 'package:dashboardx/ui/card/emission_card.dart';
 import 'package:dashboardx/ui/card/emotion_card.dart';
 import 'package:dashboardx/ui/card/emotion_tip_card.dart';
+import 'package:dashboardx/ui/card/noise_card.dart';
 import 'package:dashboardx/ui/card/weather_card.dart';
 import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -76,9 +78,11 @@ class _MainPageState extends State<MainPage> {
           aspectRatio: width / height,
           scrollDirection: Axis.vertical,
           viewportFraction: 1.0,
-          autoPlay: true,
+          autoPlay: false,
           items: [
-            EmotionCard(10, 0, _state.info.emotion),
+            EmissionCard(),
+            NoiseCard(),
+            EmotionCard(_state.info.emotion),
             EmotionTopCard(_state.info.emotion),
             WeatherCard(),
             EmergencyCard(),
