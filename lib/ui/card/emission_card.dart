@@ -1,13 +1,16 @@
 import 'package:built_collection/src/list.dart';
 import 'package:dashboardx/data/model/server/contester.dart';
+import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:dashboardx/ui/widget/d_column.dart';
 import 'package:dashboardx/ui/widget/utils.dart';
 import 'package:dashboardx/utils/dates.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:dashboardx/service/api_service.dart';
 
-const _tag = "dashboard_card";
+const _tag = "emission_card";
 
 class EmissionCard extends StatelessWidget {
   final BuiltList<Contester> _leaderboard;
@@ -16,10 +19,10 @@ class EmissionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _body();
+    return _body(context);
   }
 
-  Widget _body() {
+  Widget _body(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -32,50 +35,64 @@ class EmissionCard extends StatelessWidget {
             emojiSize: Size(26, 29),
           ),
         ),
-        Flexible(child: _columns()),
+        Flexible(child: _columns(context)),
       ],
     );
   }
 
-  Widget _columns() {
+  Widget _columns(BuildContext context) {
+    List<Contester> sorted = _leaderboard.toList();
+    sorted.sort((a, b) => a.co2EmissionMonthly.compareTo(b.co2EmissionMonthly));
+
+    List<Widget> widgets = List<Widget>();
+    for (int i = 0; i < sorted.length; i++) {
+      final item = sorted[i];
+      String icon;
+      if (i == 0) {
+        icon = DashboardxIcons.funny;
+      } else if (i == 1) {
+        icon = DashboardxIcons.calm;
+      } else if (i == 2) {
+        icon = DashboardxIcons.sad;
+      } else {
+        icon = DashboardxIcons.angry;
+      }
+
+      String name =
+          item.housingId == ApiService.houseId ? "" : item.housingName;
+
+      Color color = Color(0xFF25265E).withOpacity(0.05);
+      if (item.housingId == ApiService.houseId) {
+        if (i == 0) {
+          color = Provider.of<DashboardxColors>(context).green;
+        } else if (i == 1) {
+          color = Provider.of<DashboardxColors>(context).yellow;
+        } else if (i == 2) {
+          color = Provider.of<DashboardxColors>(context).orange;
+        } else {
+          color = Provider.of<DashboardxColors>(context).red;
+        }
+      }
+
+      widgets.add(
+        DColumn(
+          icon,
+          "${item.co2EmissionMonthly.floor()}Kg",
+          item.co2EmissionMonthly /
+              sorted[sorted.length - 1].co2EmissionMonthly,
+          color,
+          title: name,
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 50),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          DColumn(
-            DashboardxIcons.sad,
-            "13Kg",
-            0.20,
-            Color(0xFF25265E).withOpacity(0.05),
-            title: "Build. 2",
-          ),
-          DColumn(
-            DashboardxIcons.sad,
-            "13Kg",
-            0.10,
-            Color(0xFF25265E).withOpacity(0.05),
-            title: "Build. 1",
-          ),
-          DColumn(
-            DashboardxIcons.calm,
-            "13Kg",
-            0.40,
-            Color(0xFFF6A051),
-            title: "Build. 12",
-          ),
-          DColumn(
-            DashboardxIcons.calm,
-            "13Kg",
-            0.30,
-            Color(0xFF25265E).withOpacity(0.05),
-            title: "Build. 23",
-          ),
-        ],
+        children: widgets,
       ),
     );
   }
-
-
 }

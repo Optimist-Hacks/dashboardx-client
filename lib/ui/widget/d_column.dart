@@ -1,6 +1,9 @@
 import 'package:dashboardx/ui/dashboardx_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:dashboardx/utils/log.dart';
+
+const _tag = "d_column";
 
 class DColumn extends StatelessWidget {
   final String emojiPath;
@@ -17,7 +20,9 @@ class DColumn extends StatelessWidget {
     this.color, {
     this.title,
     this.uptitle,
-  });
+  }) {
+    Log.d(_tag, "percent = $percent");
+  }
 
   @override
   Widget build(BuildContext context) {
