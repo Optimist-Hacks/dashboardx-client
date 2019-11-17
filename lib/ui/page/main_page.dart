@@ -85,6 +85,8 @@ class _MainPageState extends State<MainPage> {
     return Stack(
       children: <Widget>[
         CarouselSlider(
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 15),
           aspectRatio: width / height,
           scrollDirection: Axis.horizontal,
           viewportFraction: 1.0,
