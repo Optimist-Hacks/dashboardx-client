@@ -92,10 +92,10 @@ class _MainPageState extends State<MainPage> {
           onPageChanged: _onPageChanged,
           items: [
             EmissionCard(),
-            NoiseCard(),
+            WeatherCard(),
             EmotionCard(_state.info.emotionDaily),
             EmotionTopCard(_state.info.emotionDaily),
-            WeatherCard(),
+            NoiseCard(),
           ],
         ),
         _dotsIndicator(),
