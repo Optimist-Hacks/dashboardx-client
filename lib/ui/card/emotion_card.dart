@@ -2,6 +2,7 @@ import 'package:dashboardx/data/model/server/emotion.dart';
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:dashboardx/ui/widget/d_column.dart';
 import 'package:dashboardx/ui/widget/utils.dart';
+import 'package:dashboardx/utils/dates.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class EmotionCard extends StatelessWidget {
           child: titleSubtitleDate(
             "Student \nHouse",
             "Now a lot of people are sad, we recommend a walk with friends!",
-            "21.10.2019",
+            "${Dates.currentData()}",
           ),
         ),
         Flexible(child: _columns()),

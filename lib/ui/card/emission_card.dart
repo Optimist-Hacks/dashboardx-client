@@ -1,6 +1,7 @@
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:dashboardx/ui/widget/d_column.dart';
 import 'package:dashboardx/ui/widget/utils.dart';
+import 'package:dashboardx/utils/dates.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class EmissionCard extends StatelessWidget {
           child: titleSubtitleDate(
             "CO2 Emission",
             "Do qui nostrud deserunt sunt officia magna Lorem nisi laborum dolore irure conse...",
-            "21.10.2019",
+            "${Dates.currentData()}",
             emojiPath: DashboardxIcons.emission,
             emojiSize: Size(26, 29),
           ),
