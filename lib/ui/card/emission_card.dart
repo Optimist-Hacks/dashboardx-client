@@ -1,3 +1,5 @@
+import 'package:built_collection/src/list.dart';
+import 'package:dashboardx/data/model/server/contester.dart';
 import 'package:dashboardx/ui/dashboardx_icons.dart';
 import 'package:dashboardx/ui/widget/d_column.dart';
 import 'package:dashboardx/ui/widget/utils.dart';
@@ -8,6 +10,10 @@ import 'package:flutter/material.dart';
 const _tag = "dashboard_card";
 
 class EmissionCard extends StatelessWidget {
+  final BuiltList<Contester> _leaderboard;
+
+  EmissionCard(this._leaderboard);
+
   @override
   Widget build(BuildContext context) {
     return _body();
@@ -70,4 +76,6 @@ class EmissionCard extends StatelessWidget {
       ),
     );
   }
+
+
 }

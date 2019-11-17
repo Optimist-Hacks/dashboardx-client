@@ -53,11 +53,11 @@ class CameraBloc {
 
   void _takePicture() async {
     await Future.delayed(Duration(seconds: 6));
-    if (_controller.value.isTakingPicture) {
-      // A capture is already pending, do nothing.
-      _takePicture();
-      return null;
-    }
+//    if (_controller.value.isTakingPicture) {
+//      // A capture is already pending, do nothing.
+//      _takePicture();
+//      return null;
+//    }
 
     if (await _imageFile.exists()) {
       await _imageFile.delete();
@@ -67,8 +67,8 @@ class CameraBloc {
       await _controller.takePicture(_imageFile.path);
     } catch (e) {
       Log.e(_tag, e);
-      _controller.dispose();
-      await _controller.initialize();
+//      _controller.dispose();
+//      await _controller.initialize();
     }
     Log.d(_tag, "Picure taken for path: ${_imageFile.path}");
     _imageTakenSubject.add(_imageFile);

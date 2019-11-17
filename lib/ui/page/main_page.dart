@@ -91,7 +91,7 @@ class _MainPageState extends State<MainPage> {
           autoPlay: false,
           onPageChanged: _onPageChanged,
           items: [
-            EmissionCard(),
+            EmissionCard(_state.info.leaderboard),
             WeatherCard(),
             EmotionCard(_state.info.emotionDaily),
             EmotionTopCard(_state.info.emotionDaily),
