@@ -20,7 +20,7 @@ class EmissionCard extends StatelessWidget {
         Flexible(
           child: titleSubtitleDate(
             "CO2 Emission",
-            "Do qui nostrud deserunt sunt officia magna Lorem nisi laborum dolore irure conse...",
+            "Unplug idle electronics. Devices like televisions, microwaves, scanners, and printers use standby power, even when off",
             "${Dates.currentData()}",
             emojiPath: DashboardxIcons.emission,
             emojiSize: Size(26, 29),
