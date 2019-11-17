@@ -95,7 +95,7 @@ class _MainPageState extends State<MainPage> {
             WeatherCard(),
             EmotionCard(_state.info.emotionDaily),
             EmotionTopCard(_state.info.emotionDaily),
-            NoiseCard(),
+            NoiseCard(_state.noise),
           ],
         ),
         _dotsIndicator(),

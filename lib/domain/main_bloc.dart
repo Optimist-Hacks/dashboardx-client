@@ -27,11 +27,14 @@ class MainBloc {
 
   Stream<MainState> get state => _mainStateBehaviorSubject;
 
+  PublishSubject<NoiseReading> _noiseSubject = PublishSubject();
+
   MainBloc(this._preferencesService, this._apiService) {
     _init();
   }
 
   void dispose() {
+    _noiseSubject.close();
     _mainStateBehaviorSubject.close();
     try {
       if (_noiseSubscription != null) {
@@ -82,7 +85,9 @@ class MainBloc {
 
     try {
       _noiseMeter = new NoiseMeter();
-      _noiseSubscription = _noiseMeter.noiseStream.listen(_onNoise);
+      _noiseSubscription = _noiseMeter.noiseStream.listen(_noiseSubject.add);
+
+      _noiseSubject.throttleTime(Duration(seconds: 1)).listen(_onNoise);
     } on NoiseMeterException catch (exception) {
       Log.e(_tag, "Can't start recorder noise $exception");
     }

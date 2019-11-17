@@ -5,10 +5,12 @@ import 'package:dashboardx/utils/dates.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const _tag = "dashboard_card";
+const _tag = "noise_card";
 
 class NoiseCard extends StatelessWidget {
-  NoiseCard();
+  final double noise;
+
+  NoiseCard(this.noise);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,18 @@ class NoiseCard extends StatelessWidget {
   }
 
   Widget _columns() {
+    final double n1 = noise;
+    final double n2 = 55;
+    final double n3 = 70;
+    final double n4 = 35;
+
+    final max = 80;
+
+    final double n1p = (n1 / max);
+    final double n2p = (n2 / max);
+    final double n3p = (n3 / max);
+    final double n4p = (n4 / max);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 50),
       child: Row(
@@ -42,29 +56,29 @@ class NoiseCard extends StatelessWidget {
         children: <Widget>[
           DColumn(
             DashboardxIcons.sad,
-            "45dB",
-            0.20,
+            "${n1.toInt()}dB",
+            n1p,
             Color(0xFF49C154),
-            uptitle: "We",
+            title: "We",
           ),
           DColumn(
             DashboardxIcons.sad,
-            "45dB",
-            0.10,
+            "${n2.toInt()}dB",
+            n2p,
             Color(0xFF25265E).withOpacity(0.05),
             title: "Build. 1",
           ),
           DColumn(
             DashboardxIcons.calm,
-            "90dB",
-            0.40,
+            "${n3.toInt()}dB",
+            n3p,
             Color(0xFF25265E).withOpacity(0.05),
             title: "Build. 12",
           ),
           DColumn(
             DashboardxIcons.calm,
-            "45dB",
-            0.30,
+            "${n4.toInt()}dB",
+            n4p,
             Color(0xFF25265E).withOpacity(0.05),
             title: "Build. 23",
           ),
