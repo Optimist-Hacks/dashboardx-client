@@ -21,7 +21,7 @@ class CameraBloc {
   Stream<File> get imageTaken => _imageTakenSubject;
 
   CameraBloc(this._apiService) {
-//    _init();
+    _init();
   }
 
   void dispose() {
@@ -52,24 +52,25 @@ class CameraBloc {
   }
 
   void _takePicture() async {
+    await Future.delayed(Duration(seconds: 6));
     if (_controller.value.isTakingPicture) {
       // A capture is already pending, do nothing.
       _takePicture();
       return null;
     }
 
-    if(await _imageFile.exists()){
-      _imageFile.deleteSync();
+    if (await _imageFile.exists()) {
+      await _imageFile.delete();
     }
 
     try {
       await _controller.takePicture(_imageFile.path);
-    } catch (e){
+    } catch (e) {
       Log.e(_tag, e);
       _controller.dispose();
       await _controller.initialize();
     }
-    Log.d(_tag, "Picure taken");
+    Log.d(_tag, "Picure taken for path: ${_imageFile.path}");
     _imageTakenSubject.add(_imageFile);
 
     final hasFace = await extractFace(_imageFile);
@@ -81,15 +82,17 @@ class CameraBloc {
   }
 
   Future<bool> extractFace(File imageFile) async {
-    final FirebaseVisionImage visionImage =
-        FirebaseVisionImage.fromFile(imageFile);
+    try {
+      final FirebaseVisionImage visionImage =
+          FirebaseVisionImage.fromFile(imageFile);
 
-    final List<Face> faces = await _faceDetector.processImage(visionImage);
+      final List<Face> faces = await _faceDetector.processImage(visionImage);
 
-    Log.d(_tag, "${faces.length} faces detected!");
-
-    return faces.isNotEmpty;
+      Log.d(_tag, "${faces.length} faces detected!");
+      return faces.isNotEmpty;
+    } catch (e) {
+      Log.e(_tag, e);
+      return false;
+    }
   }
-
-  String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 }

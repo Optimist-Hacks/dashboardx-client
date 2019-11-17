@@ -23,19 +23,19 @@ abstract class Emotion implements Built<Emotion, EmotionBuilder> {
   double get surprise;
 
   double angryTotal() {
-    return (anger + fear) * 100;
+    return (anger + fear);
   }
 
   double sadTotal() {
-    return (sadness + disgust + contempt) * 100;
+    return (sadness + disgust + contempt);
   }
 
   double calmTotal() {
-    return neutral * 100;
+    return neutral;
   }
 
   double funnyTotal() {
-    return (surprise + happiness) * 100;
+    return (surprise + happiness);
   }
 
   Emotion._();
