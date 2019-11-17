@@ -88,7 +88,6 @@ class _MainPageState extends State<MainPage> {
           aspectRatio: width / height,
           scrollDirection: Axis.horizontal,
           viewportFraction: 1.0,
-          autoPlay: false,
           onPageChanged: _onPageChanged,
           items: [
             EmissionCard(_state.info.leaderboard),
