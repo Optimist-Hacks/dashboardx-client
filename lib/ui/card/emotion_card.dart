@@ -24,8 +24,8 @@ class EmotionCard extends StatelessWidget {
       children: <Widget>[
         Flexible(
           child: titleSubtitleDate(
-            "Student \nHouse",
-            "Now a lot of people are sad, we recommend a walk with friends!",
+            "Emotions",
+            "This is information about the emotional state of the inhabitants of this building",
             "${Dates.currentData()}",
           ),
         ),
