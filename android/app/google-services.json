@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "401767018651-beg3lodl5jgc29v6sbie8vrdmfijtpj2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.optimist.dashboardx",
+            "certificate_hash": "5bfdd063f7d4866eeb22b3e433e7511a143dc227"
+          }
+        },
+        {
           "client_id": "401767018651-nkebq9a4f6ck4isv59lvt08nb8gbs5hk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
