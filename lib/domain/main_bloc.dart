@@ -71,7 +71,8 @@ class MainBloc {
           ..neutral = 0
           ..sadness = 0
           ..surprise = 0).toBuilder()).toBuilder()
-      ..noise = 0);
+      ..noise = 0
+      ..pageIndex = 0);
     _mainStateBehaviorSubject.add(initMainState);
 
     final response = _preferencesService.getInfo();
@@ -107,5 +108,9 @@ class MainBloc {
     }
     _preferencesService.setInfo(jsonEncode(serialize<Info>(info)));
     _updateMainState((b) => b..info = info.toBuilder());
+  }
+
+  void changePage(int index) {
+    _updateMainState((b) => b..pageIndex = index);
   }
 }

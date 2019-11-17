@@ -19,8 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../service/api_service.dart';
-
 const _tag = "main_page";
 
 class MainPage extends StatefulWidget {
@@ -36,8 +34,7 @@ class _MainPageState extends State<MainPage> {
   MainState _state;
   PreferencesService _preferencesService;
 
-  int _pageCount = 3;
-  int _currentPage = 0;
+  int _pageCount = 5;
 
   @override
   void didChangeDependencies() {
@@ -92,6 +89,7 @@ class _MainPageState extends State<MainPage> {
           scrollDirection: Axis.vertical,
           viewportFraction: 1.0,
           autoPlay: false,
+          onPageChanged: _onPageChanged,
           items: [
             EmissionCard(),
             NoiseCard(),
@@ -112,7 +110,7 @@ class _MainPageState extends State<MainPage> {
         padding: const EdgeInsets.all(16.0),
         child: DotsIndicator(
           dotsCount: _pageCount,
-          position: _currentPage.toDouble(),
+          position: _state.pageIndex.toDouble(),
           decorator: DotsDecorator(
             activeColor: Provider.of<DashboardxColors>(context).activeColor,
             color: Provider.of<DashboardxColors>(context).passiveColor,
@@ -121,5 +119,9 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
+  }
+
+  void _onPageChanged(int currentIndex) {
+    _mainBloc.changePage(currentIndex);
   }
 }

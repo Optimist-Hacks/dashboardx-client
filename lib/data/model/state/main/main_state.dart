@@ -10,5 +10,7 @@ abstract class MainState implements Built<MainState, MainStateBuilder> {
 
   double get noise;
 
+  int get pageIndex;
+
   factory MainState([void Function(MainStateBuilder) updates]) = _$MainState;
 }

@@ -11,16 +11,21 @@ class _$MainState extends MainState {
   final Info info;
   @override
   final double noise;
+  @override
+  final int pageIndex;
 
   factory _$MainState([void Function(MainStateBuilder) updates]) =>
       (new MainStateBuilder()..update(updates)).build();
 
-  _$MainState._({this.info, this.noise}) : super._() {
+  _$MainState._({this.info, this.noise, this.pageIndex}) : super._() {
     if (info == null) {
       throw new BuiltValueNullFieldError('MainState', 'info');
     }
     if (noise == null) {
       throw new BuiltValueNullFieldError('MainState', 'noise');
+    }
+    if (pageIndex == null) {
+      throw new BuiltValueNullFieldError('MainState', 'pageIndex');
     }
   }
 
@@ -34,19 +39,24 @@ class _$MainState extends MainState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MainState && info == other.info && noise == other.noise;
+    return other is MainState &&
+        info == other.info &&
+        noise == other.noise &&
+        pageIndex == other.pageIndex;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, info.hashCode), noise.hashCode));
+    return $jf(
+        $jc($jc($jc(0, info.hashCode), noise.hashCode), pageIndex.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('MainState')
           ..add('info', info)
-          ..add('noise', noise))
+          ..add('noise', noise)
+          ..add('pageIndex', pageIndex))
         .toString();
   }
 }
@@ -62,12 +72,17 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   double get noise => _$this._noise;
   set noise(double noise) => _$this._noise = noise;
 
+  int _pageIndex;
+  int get pageIndex => _$this._pageIndex;
+  set pageIndex(int pageIndex) => _$this._pageIndex = pageIndex;
+
   MainStateBuilder();
 
   MainStateBuilder get _$this {
     if (_$v != null) {
       _info = _$v.info?.toBuilder();
       _noise = _$v.noise;
+      _pageIndex = _$v.pageIndex;
       _$v = null;
     }
     return this;
@@ -90,7 +105,9 @@ class MainStateBuilder implements Builder<MainState, MainStateBuilder> {
   _$MainState build() {
     _$MainState _$result;
     try {
-      _$result = _$v ?? new _$MainState._(info: info.build(), noise: noise);
+      _$result = _$v ??
+          new _$MainState._(
+              info: info.build(), noise: noise, pageIndex: pageIndex);
     } catch (_) {
       String _$failedField;
       try {
